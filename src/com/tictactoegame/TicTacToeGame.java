@@ -1,8 +1,13 @@
 package com.tictactoegame;
 
+import java.util.Scanner;
+
 public class TicTacToeGame {
+	static Scanner input = new Scanner(System.in);
 	public static char[][] board;
-	public char computer, player;
+	public static char computer;
+	public static char player;
+	
 
 	/**
 	 * Constructor
@@ -10,6 +15,7 @@ public class TicTacToeGame {
 	public TicTacToeGame() {
 		board = new char[3][3];
 		createBoard();
+		System.out.println("Welcome to Tic Tac Toe");
 	}
 
 	/**
@@ -24,9 +30,35 @@ public class TicTacToeGame {
 
 	}
 
+	/**
+	 * UC2
+	 * @param input
+	 */
+	public static void inputMark(Scanner input) {
+		do {
+			System.out.println("Enter your input mark X or O: ");
+			player = input.next().charAt(0);
+			if (player == 'X' && player == 'O') {
+				switch (player) {
+				case 'X':
+					computer = 'O';
+					break;
+				case 'O':
+					computer = 'X';
+					break;
+				default:
+					break;
+				}
+			}
+
+		}while(player == 'X' || player == 'O');
+		System.out.println("Invalid input mark.");
+	}
+
 	public static void main(String[] args) {
 		TicTacToeGame game = new TicTacToeGame();
-		createBoard();
+		TicTacToeGame.createBoard();
+		TicTacToeGame.inputMark(input);
 	}
 
 }
