@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class TicTacToeGame {
 	static Scanner input = new Scanner(System.in);
+	static Scanner inputcolumn = new Scanner(System.in);
 	public static char[][] board;
 	public static char computer;
 	public static char player;
@@ -21,7 +22,7 @@ public class TicTacToeGame {
 	 * UC1
 	 */
 	public static void createBoard() {
-		for (int i = 0; i < 3; i++) {
+		for (int i = 1; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				board[i][j] = ' ';
 			}
@@ -56,7 +57,11 @@ public class TicTacToeGame {
 
 	}
 
-	public static void printBorad() {
+	/**
+	 * UC3
+	 */
+
+	public static void printBorad(char[][] board) {
 		System.out.println("-------------");
 		for (int i = 0; i < 3; i++) {
 			System.out.print("| ");
@@ -68,11 +73,45 @@ public class TicTacToeGame {
 		}
 	}
 
+	/**
+	 * UC4
+	 * 
+	 * @param input
+	 * @param inputcolumn
+	 * @param board
+	 * @return
+	 */
+
+	public static boolean markEntry(Scanner input, Scanner inputcolumn, char[][] board) {
+		while (true) {
+			int entryRow = 0;
+			int entryColumn = 0;
+			System.out.println("Enter the index for row and coulmn:");
+			entryRow = input.nextInt();
+			entryColumn = inputcolumn.nextInt();
+			if ((entryRow >= 0) && (entryRow < 3)) {
+				if ((entryColumn >= 0) && (entryColumn < 3)) {
+					board[entryRow][entryColumn] = '-';
+					{
+						board[entryRow][entryColumn] = player;
+						printBorad(board);
+						return true;
+					}
+				}
+			} else {
+				System.out.println("Already filled index");
+				printBorad(board);
+				return false;
+			}
+		}
+	}
+
 	public static void main(String[] args) {
 		TicTacToeGame game = new TicTacToeGame();
 		TicTacToeGame.createBoard();
 		TicTacToeGame.inputMark(input);
-		TicTacToeGame.printBorad();
+		markEntry(input, inputcolumn, board);
+
 	}
 
 }
