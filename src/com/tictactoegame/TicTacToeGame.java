@@ -7,7 +7,6 @@ public class TicTacToeGame {
 	public static char[][] board;
 	public static char computer;
 	public static char player;
-	
 
 	/**
 	 * Constructor
@@ -32,33 +31,48 @@ public class TicTacToeGame {
 
 	/**
 	 * UC2
+	 * 
 	 * @param input
 	 */
 	public static void inputMark(Scanner input) {
-		do {
-			System.out.println("Enter your input mark X or O: ");
-			player = input.next().charAt(0);
-			if (player == 'X' && player == 'O') {
-				switch (player) {
-				case 'X':
-					computer = 'O';
-					break;
-				case 'O':
-					computer = 'X';
-					break;
-				default:
-					break;
-				}
+		System.out.println("Enter your input mark X or O: ");
+		player = input.next().charAt(0);
+		if (player == 'X' || player == 'O') {
+			switch (player) {
+			case 'X':
+				computer = 'O';
+				break;
+			case 'O':
+				computer = 'X';
+				break;
+			default:
+				System.out.println("Ivalid input");
+				break;
 			}
+			System.out.println("Your mark is: " + player);
+			System.out.println("Computer mark is: " + computer);
 
-		}while(player == 'X' || player == 'O');
-		System.out.println("Invalid input mark.");
+		}
+
+	}
+
+	public static void printBorad() {
+		System.out.println("-------------");
+		for (int i = 0; i < 3; i++) {
+			System.out.print("| ");
+			for (int j = 0; j < 3; j++) {
+				System.out.print(board[i][j] + " | ");
+			}
+			System.out.println();
+			System.out.println("-------------");
+		}
 	}
 
 	public static void main(String[] args) {
 		TicTacToeGame game = new TicTacToeGame();
 		TicTacToeGame.createBoard();
 		TicTacToeGame.inputMark(input);
+		TicTacToeGame.printBorad();
 	}
 
 }
