@@ -74,7 +74,7 @@ public class TicTacToeGame {
 	}
 
 	/**
-	 * UC4
+	 * UC4 UC5
 	 * 
 	 * @param input
 	 * @param inputcolumn
@@ -103,10 +103,22 @@ public class TicTacToeGame {
 		}
 	}
 
+	public static void tossToCheck(){
+		if (Math.random() < 0.5) {
+			System.out.println("Head is up:its currentPlayerMark");
+		} else {
+			System.out.println("Tails is up:its computer's turn");
+		}
+
+	}
+
+	
+
 	public static void main(String[] args) {
 		TicTacToeGame game = new TicTacToeGame();
 		TicTacToeGame.createBoard();
 		TicTacToeGame.inputMark(input);
+		TicTacToeGame.tossToCheck();
 		while (true) {
 			markEntry(input, board);
 			if (countEntry == 9)
