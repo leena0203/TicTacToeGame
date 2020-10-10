@@ -86,6 +86,7 @@ public class TicTacToeGame {
 	 */
 
 	public static void markEntry(Scanner input, char symbol, Chance chance) {
+		if (chance == Chance.User) {
 		int entryRow = 0;
 		int entryColumn = 0;
 		System.out.println("Enter the index for row and coulmn:");
@@ -105,8 +106,20 @@ public class TicTacToeGame {
 				}
 			}
 		}
+		}
+		else {
+			int entryRow = getWin(computer);
+			int entryColumn = getWin1(computer);
+			if(entryRow != 0) {
+				if (entryColumn != 0) {
+				makeMove(entryRow,entryColumn,computer, board);
+			}
+			countEntry++;
+			checkGameStatus(input,computer,Chance.CompPlayer);
+			}
+		}
 	}
-
+	
 	/**
 	 * UC5
 	 * 
@@ -211,7 +224,49 @@ public class TicTacToeGame {
 			}
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @param args
+	 */
+	public static int getWin(char symbol) {
+		int entryRow = 0;
+		int entryColumn = 0;
+		char[][] copyBoard = board;
+		for(int iteration = 0; iteration < 3 ; iteration++) {
+			if(copyBoard[entryRow][entryColumn] == ' ') {
+				makeMove(iteration,entryColumn, symbol, copyBoard);
+				if(checkForWin(copyBoard,symbol)) {
+					entryRow = iteration;
+					break;
+				}
+			}
+		}
+		return entryRow; 
+	}
+	
+	/**
+	 * UC8
+	 * @param symbol
+	 * @return
+	 */
+	public static int getWin1(char symbol) {
+		int entryRow = 0;
+		int entryColumn = 0;
+		char[][] copyBoard = board;
+		for(int i = 0; i < 3 ; i++) {
+			if(copyBoard[entryRow][entryColumn] == ' ') {
+				makeMove(entryRow,i, symbol, copyBoard);
+				if(checkForWin(copyBoard,symbol)) {
+					entryColumn = i;
+					break;
+				}
+			}
+		}
+		return entryColumn; 
+	}
+	
+		
 	public static void main(String[] args) {
 		TicTacToeGame game = new TicTacToeGame();
 		TicTacToeGame.createBoard();
