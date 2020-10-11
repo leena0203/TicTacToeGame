@@ -98,24 +98,37 @@ public class TicTacToeGame {
 						makeMove(entryRow, entryColumn, symbol, board);
 						printBorad(board);
 						checkGameStatus(input, symbol, chance);
-						// countEntry++;
+						countEntry++;
 
 					} else {
 						System.out.println("Already filled index");
 						markEntry(input, symbol, chance);
 					}
 				}
-			} else {
-				int[] winPosition = getWin(computer);
-				makeMove(winPosition[0], winPosition[1], computer, board);
 			}
 		} else {
-			int[] winPosition = getWin(player);
-			makeMove(winPosition[0], winPosition[1], computer, board);
-			countEntry++;
+			if(! getWin(symbol)) {
+				if(! getWin(player)) {
+					if(! playEdges(symbol)) {
+						//if(! playCenter(symbol)) {
+						//playSides(symbol);
+					}
+				}
+			}
 			checkGameStatus(input, computer, Chance.CompPlayer);
 		}
 	}
+
+
+
+	//	private static boolean playCenter(char symbol) {
+	//		// TODO Auto-generated method stub
+	//		boolean flag = false;
+	//		if (board[1][1] == ' ') {
+	//			flag = true;
+	//		}
+	//		return false;
+	//	}
 
 	/**
 	 * UC5
@@ -227,7 +240,8 @@ public class TicTacToeGame {
 	 * 
 	 * @param args
 	 */
-	public static int[] getWin(char symbol) {
+	public static boolean getWin(char symbol) {
+		boolean flag = false;
 		int entryRow = 0;
 		int entryColumn = 0;
 		char[][] copyBoard = board;
@@ -238,13 +252,57 @@ public class TicTacToeGame {
 					if (checkForWin(copyBoard, symbol)) {
 						entryRow = iteration;
 						entryColumn = i;
+						makeMove(iteration, i, symbol, board);
+						countEntry++;
+						flag = true;
 						break;
 					}
 				}
 			}
 		}
-		return new int[] { entryRow, entryColumn };
+		return flag;
 	}
+	/**
+	 * UC10
+	 * @param symbol
+	 * @return
+	 */
+	public static boolean playEdges(char symbol) {
+		boolean flag = false;
+		int entryRow = 0;
+		int entryColumn = 0;
+		for (int iteration = 0; iteration < 3; iteration = iteration+2) {
+			for (int i = 0; i < 3;i = i+2) {	
+				if (board[iteration][i] == ' ' ) {
+					flag = true;
+					makeMove(iteration, i, symbol, board);
+					countEntry++;
+					break;
+				}
+			}
+		}
+		return flag;
+	}
+
+	//	public static void playSides(char symbol) {
+	//		int entryRow = 0;
+	//		int entryColumn = 0;
+	//		for (int i = 0; i < 3; i = i+2) {	
+	//			if (board[i][1] == ' ' ) {
+	//				makeMove(i, 1, symbol, board);
+	//				countEntry++;
+	//				break;
+	//			}
+	//			else if(board[1][0] == ' ') {
+	//				makeMove(1, 0, symbol, board);
+	//				countEntry++;
+	//			}
+	//			else {
+	//				makeMove(1, 2, symbol, board);
+	//			}
+	//		}
+	//
+	//	}
 
 	public static void main(String[] args) {
 		TicTacToeGame game = new TicTacToeGame();
