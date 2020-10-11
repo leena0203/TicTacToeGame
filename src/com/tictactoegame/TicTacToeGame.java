@@ -110,8 +110,8 @@ public class TicTacToeGame {
 			if(! getWin(symbol)) {
 				if(! getWin(player)) {
 					if(! playEdges(symbol)) {
-						//if(! playCenter(symbol)) {
-						//playSides(symbol);
+						if(! playCenter(symbol)) {
+						playSides(symbol);
 					}
 				}
 			}
@@ -311,6 +311,8 @@ public class TicTacToeGame {
 			}
 	
 		}
+		
+		//UC13
 	public static void resetGame(Scanner input) {
 		createBoard();
 		computer = ' ';
