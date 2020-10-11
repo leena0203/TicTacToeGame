@@ -311,12 +311,21 @@ public class TicTacToeGame {
 			}
 	
 		}
-
+	public static void resetGame(Scanner input) {
+		createBoard();
+		computer = ' ';
+		player = ' ';
+		countEntry = 0;
+		inputMark(input);
+		printBorad(board);
+		tossToCheck();
+	}
 	public static void main(String[] args) {
 		TicTacToeGame game = new TicTacToeGame();
 		TicTacToeGame.createBoard();
 		TicTacToeGame.inputMark(input);
 		TicTacToeGame.tossToCheck();
+		resetGame(input);
 
 	}
 }
