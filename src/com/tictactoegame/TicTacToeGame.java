@@ -119,16 +119,20 @@ public class TicTacToeGame {
 		}
 	}
 
+	/**
+	 * UC11
+	 * @param symbol
+	 * @return
+	 */
 
-
-	//	private static boolean playCenter(char symbol) {
-	//		// TODO Auto-generated method stub
-	//		boolean flag = false;
-	//		if (board[1][1] == ' ') {
-	//			flag = true;
-	//		}
-	//		return false;
-	//	}
+	private static boolean playCenter(char symbol) {
+		// TODO Auto-generated method stub
+		boolean flag = false;
+		if (board[1][1] == ' ') {
+			flag = true;
+		}
+		return false;
+	}
 
 	/**
 	 * UC5
@@ -283,26 +287,30 @@ public class TicTacToeGame {
 		}
 		return flag;
 	}
+	/**
+	 * UC11
+	 * @param symbol
+	 */
 
-	//	public static void playSides(char symbol) {
-	//		int entryRow = 0;
-	//		int entryColumn = 0;
-	//		for (int i = 0; i < 3; i = i+2) {	
-	//			if (board[i][1] == ' ' ) {
-	//				makeMove(i, 1, symbol, board);
-	//				countEntry++;
-	//				break;
-	//			}
-	//			else if(board[1][0] == ' ') {
-	//				makeMove(1, 0, symbol, board);
-	//				countEntry++;
-	//			}
-	//			else {
-	//				makeMove(1, 2, symbol, board);
-	//			}
-	//		}
-	//
-	//	}
+		public static void playSides(char symbol) {
+			int entryRow = 0;
+			int entryColumn = 0;
+			for (int i = 0; i < 3; i = i+2) {	
+				if (board[i][1] == ' ' ) {
+					makeMove(i, 1, symbol, board);
+					countEntry++;
+					break;
+				}
+				else if(board[1][0] == ' ') {
+					makeMove(1, 0, symbol, board);
+					countEntry++;
+				}
+				else {
+					makeMove(1, 2, symbol, board);
+				}
+			}
+	
+		}
 
 	public static void main(String[] args) {
 		TicTacToeGame game = new TicTacToeGame();
